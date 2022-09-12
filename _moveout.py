@@ -37,7 +37,8 @@ print('use this to move subtask1/data1 out and rename automatically')
 li = walk(depth=2)
 
 for f in li:
-    if f.count('/')==2:
-        shutil.copyfile(src=f,dst=f.split('/')[1]+'_'+f.split('/')[2])
-    elif f.count('\\')==2:
-        shutil.copyfile(src=f,dst=f.split('\\')[1]+'_'+f.split('\\')[2])
+    if not f.startswith('.\\.') and not f.startswith('./.'):
+        if f.count('/')==2:
+            shutil.copyfile(src=f,dst=f.split('/')[1]+'_'+f.split('/')[2])
+        elif f.count('\\')==2:
+            shutil.copyfile(src=f,dst=f.split('\\')[1]+'_'+f.split('\\')[2])
